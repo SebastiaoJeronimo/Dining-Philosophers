@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <limits.h>
+#include <sys/time.h>
 
 //philo state args
 #define EAT 1
@@ -18,7 +19,13 @@
 #define N_T_EAT 5
 
 //messages
-#define INVALID_INPUT "invalid input\n"
+# define MSG_FORK   "has taken a fork\n"
+# define MSG_EAT    "is eating\n"
+# define MSG_SLEEP  "is sleeping\n"
+# define MSG_THINK  "is thinking\n"
+# define MSG_DIE    "died\n"
+# define INVALID_INPUT "invalid input\n"
+
 struct s_data //cena da data
 {
     int n_philo;
@@ -43,5 +50,12 @@ void store_valid_input(int num_arg, int num);
 //utils.c
 
 int	ft_isdigit(int c);
+
+//program.c
+void start_program();
+
+//time.c
+long long getTime();
+
 
 #endif

@@ -12,15 +12,15 @@ void store_valid_input(int num_arg, int num)
 
     data = get_data();
     if(num_arg == N_PHILO)
-        data->n_philo = num_arg;
+        data->n_philo = num;
     else if (num_arg == T_DIE)
-        data->time_die = num_arg;
+        data->time_die = num;
     else if (num_arg == T_EAT)
-        data->time_eat = num_arg;
+        data->time_eat = num;
     else if (num_arg == T_SLEEP)
-        data->time_sleep = num_arg;
+        data->time_sleep = num;
     else
-        data->eat_times = num_arg;
+        data->eat_times = num;
 }
 
 /**
@@ -40,7 +40,7 @@ int check_valid_number(char *num_str)
     {
         if ((num > INT_MAX) | !ft_isdigit(num_str[i]))
             return 0;
-        num += num*10 + (num_str[i] - '0');
+        num = num*10 + (num_str[i] - '0');
         i++;
     }
     return num;
