@@ -1,8 +1,10 @@
 #ifndef PHILOSOPHERS_H
 # define PHILOSOPHERS_H
 
+#include <pthread.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <limits.h>
 #include <sys/time.h>
 
@@ -19,12 +21,14 @@
 #define N_T_EAT 5
 
 //messages
-# define MSG_FORK   "has taken a fork\n"
-# define MSG_EAT    "is eating\n"
-# define MSG_SLEEP  "is sleeping\n"
-# define MSG_THINK  "is thinking\n"
-# define MSG_DIE    "died\n"
-# define INVALID_INPUT "invalid input\n"
+#define MSG_FORK      "has taken a fork\n"
+#define MSG_EAT       "is eating\n"
+#define MSG_SLEEP     "is sleeping\n"
+#define MSG_THINK     "is thinking\n"
+#define MSG_DIE       "died\n"
+#define INVALID_INPUT "invalid input\n"
+
+
 
 struct s_data //cena da data
 {
@@ -33,8 +37,19 @@ struct s_data //cena da data
     int time_eat;
     int time_sleep;
     int eat_times;
+    long long start_time;
 };
 typedef struct s_data t_data;
+
+struct s_philo //philo struct
+{
+    int n_eat_times;
+    long long last_eat_time;
+    int philo_id;
+    pthread_mutex_t *fork;
+    pthread_t thread;
+};
+typedef struct s_philo t_philo;
 
 
 //data.c
@@ -56,6 +71,8 @@ void start_program();
 
 //time.c
 long long getTime();
-
+void *routine(void *arg);
+int one_philo_case();
+void start_program();
 
 #endif

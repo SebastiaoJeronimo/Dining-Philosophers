@@ -32,6 +32,8 @@ int main(int argc, char **argv){
     
     
     start_program();
+
+
     
     //usleep e gettime 
     //do the part of initializing only one philo
@@ -47,6 +49,8 @@ int main(int argc, char **argv){
         sleep()
         think()
     }
+
+    PTHREAD_THREADS_MAX
     */ 
 
     //usleep strategy
