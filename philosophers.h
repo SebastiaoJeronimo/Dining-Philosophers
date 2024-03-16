@@ -68,11 +68,14 @@ int	ft_isdigit(int c);
 
 //program.c
 void start_program();
+void *routine(void *arg);
+void one_philo_case();
+void start_program();
 
 //time.c
 long long getTime();
-void *routine(void *arg);
-int one_philo_case();
-void start_program();
+long long did_philo_starve(long long last_meal_time);
+long long get_real_time(long long num);
+long long time_diff(long long num1, long long num2);
 
 #endif
