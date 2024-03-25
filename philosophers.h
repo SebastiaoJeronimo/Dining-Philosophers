@@ -21,15 +21,23 @@
 #define N_T_EAT 5
 
 //messages
-#define MSG_FORK      "has taken a fork\n"
-#define MSG_EAT       "is eating\n"
-#define MSG_SLEEP     "is sleeping\n"
-#define MSG_THINK     "is thinking\n"
-#define MSG_DIE       "died\n"
+#define M_FORK      "has taken a fork\n"
+#define M_EAT       "is eating\n"
+#define M_SLEEP     "is sleeping\n"
+#define M_THINK     "is thinking\n"
+#define M_DIE       "died\n"
 #define INVALID_INPUT "invalid input\n"
 
 
-
+struct s_philo //philo struct
+{
+    int n_eat_times;
+    long long last_eat_time;
+    int philo_id;
+    pthread_mutex_t *fork;
+    pthread_t thread;
+};
+typedef struct s_philo t_philo;
 
 struct s_data //cena da data
 {
@@ -43,19 +51,7 @@ struct s_data //cena da data
 };
 typedef struct s_data t_data;
 
-struct s_philo //philo struct
-{
-    int n_eat_times;
-    long long last_eat_time;
-    int philo_id;
-    pthread_mutex_t *fork;
-    pthread_t thread;
-};
-typedef struct s_philo t_philo;
-
-
 //data.c
-
 t_data *get_data();
 
 //arg_check.c
@@ -70,10 +66,11 @@ int	ft_isdigit(int c);
 
 //program.c
 void start_program();
-void *routine(void *arg);
-void one_philo_case();
-void start_program();
 void routine2(void );
+
+//one_philo.c
+void one_philo_case();
+void *routine_one();
 
 //time.c
 long long getTime();
