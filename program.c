@@ -50,21 +50,51 @@ void one_philo_case()
     free(philo);
 }
 
+int init_threads()
+{
+    int i = 0;
+
+    while(i < get_data()->n_philo)
+    {
+        if (pthread_create(get_data()->philos[i].thread, NULL \
+        
+        i++;
+    }
+}
+
 void start_program()
 {
     t_data *data;
+    t_philo *philos;
 
     data = get_data();
     data->start_time = getTime();
+
+    data->philos = malloc(sizeof(t_philo) * data->n_philo);
+    int i = 0;
+    while (i < data->n_philo)
+    {
+        philos[i].philo_id = i+1;
+        philos[i].n_eat_times = 0;
+        philos[i].last_eat_time = 0;
+        philos[i].fork = malloc(sizeof(pthread_mutex_t));
+        if (pthread_mutex_init(philos[i].fork,NULL))
+            return ; //checkar se deu erro tipo mallo
+        i++;
+    } 
+
+
+
+    //verificar malloc
     if (data->n_philo == 1)
     {
-        printf("one_philo\n");
+        printf("one philo\n");
         one_philo_case();
     }
     else 
     {
-        printf("something to be implemented");
-        //more_philo();
+        printf("more than one philo\n");
+        init_threads();
     }
 }
 

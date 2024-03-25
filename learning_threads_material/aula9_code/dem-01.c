@@ -1,53 +1,32 @@
-#include <stdio.h>
-#include <unistd.h>
-#include <pthread.h>
+threads.c
 
-#include "common.h"
-#include "common_threads.h"
+#include "../inc/philo.h"
 
-int inSync= 0;
+int	init_threads(t_table *f)
+{
+	int	i;
 
-pthread_mutex_t mtx = PTHREAD_MUTEX_INITIALIZER;
-pthread_cond_t cnd = PTHREAD_COND_INITIALIZER;
-
-
-void myThrWait() {
- pthread_mutex_lock(&mtx);
-    while (!inSync) pthread_cond_wait(&cnd, &mtx);
-  pthread_mutex_unlock(&mtx);
+	i = 0;
+	while (i < f->data->number_of_philo)
+	{
+		if (pthread_create(&f->philo[i].thread,
+				NULL, (void *)routine, &(f->philo[i])))
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
+int	join_threads(t_table *f)
+{
+	int	i;
 
-void myThrSign() {
-  pthread_mutex_lock(&mtx);
-    inSync= 1;
-    pthread_cond_signal(&cnd);
-  pthread_mutex_unlock(&mtx);
-}
-
-
-
-void *child(void *arg) {
-
-    printf("child begins and sleeps 5s\n"); sleep(5);
-
-    myThrSign();
-
-    printf("child ends\n");
-    return NULL;
-}
-
-int main(int argc, char *argv[]) {
-
-    pthread_t p;
-
-    printf("parent begins\n");
-
-    Pthread_create(&p, NULL, child, NULL);
-
-    myThrWait();
-
-    printf("parent ends\n");
-
-    return 0;
+	i = 0;
+	while (i < f->data->number_of_philo)
+	{
+		if (pthread_join(f->philo[i].thread, NULL))
+			return (0);
+		i++;
+	}
+	return (1);
 }

@@ -30,6 +30,7 @@
 
 
 
+
 struct s_data //cena da data
 {
     int n_philo;
@@ -38,6 +39,7 @@ struct s_data //cena da data
     int time_sleep;
     int eat_times;
     long long start_time;
+    t_philo *philos;
 };
 typedef struct s_data t_data;
 
@@ -71,6 +73,7 @@ void start_program();
 void *routine(void *arg);
 void one_philo_case();
 void start_program();
+void routine2(void );
 
 //time.c
 long long getTime();

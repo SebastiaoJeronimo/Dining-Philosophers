@@ -6,40 +6,30 @@
 void printArgs()
 {
     t_data *data = get_data();
-    printf("%d %d %d %d %d\n",data->n_philo,data->time_die,data->time_eat,data->time_eat,data->eat_times);
+    printf("%d %d %d %d %d\n", data->n_philo, data->time_die, data->time_eat, data->time_eat, data->eat_times);
 }
 
 /**
  * @brief main function of the program
- * 
+ *
  * @param argc number of arguments of the program
  * @param argv arguments of the program
  */
-int main(int argc, char **argv){
-    printf("number of args: %d\n",argc);
-    int i = 1;
-    while (i <= argc)
-    {
-        printf("argc num %d é : %s\n", i, argv[i-1]);
-        i++;
-    }
+int main(int argc, char **argv)
+{
     if (!check_args(argc, argv))
         printf(INVALID_INPUT);
-    else 
+    else
         printf("valid argument format\n");
 
-    printArgs();    //DEBUG
-    
-    
+
     start_program();
 
+    // usleep e gettime
+    // do the part of initializing only one philo
 
-    
-    //usleep e gettime 
-    //do the part of initializing only one philo
-
-    //initialize philos
-    //initialize forks
+    // initialize philos
+    // initialize forks
 
     /* PHILOSOPHERS ROUTINE
     while (1) {
@@ -51,10 +41,10 @@ int main(int argc, char **argv){
     }
 
     PTHREAD_THREADS_MAX
-    */ 
+    */
 
-    //usleep strategy
-    //change the order of acquiring forks
+    // usleep strategy
+    // change the order of acquiring forks
 
     return 0;
 }
