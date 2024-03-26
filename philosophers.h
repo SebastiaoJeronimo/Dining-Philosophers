@@ -71,6 +71,7 @@ void routine2(void );
 //one_philo.c
 void one_philo_case();
 void *routine_one();
+void free_stuff(t_philo *philo);
 
 //time.c
 long long getTime();

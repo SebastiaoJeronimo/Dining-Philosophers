@@ -19,26 +19,14 @@ int init_threads()
 void start_program()
 {
     t_data *data;
-    //t_philo *philos;
 
-    data = get_data();
-    data->start_time = getTime();
+    data = get_data(); //ver se realmente preciso desta shit aqui
+    //data->start_time = getTime();
 
-
-
-
-    //verificar malloc
     if (data->n_philo == 1)
-    {
-        printf("one philo\n");
         one_philo_case();
-    }
     else 
-    {
-        printf("more than one philo\n");
-        //more_philos();
-        //init_threads();
-    }
+        more_philos();
 }
 
 /*
