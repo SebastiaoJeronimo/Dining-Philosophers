@@ -33,9 +33,10 @@ void more_philos(int n_philos)
     }
     if (!initialize_philos(n_philos, d->philos))
     {
-        printf(ERROR_INIT);
+        printf(ERROR_INIT); //FREE STUFF
         return ;
     }
+    start_threads();
     //FREE STUFF
 
     //TO DEBUG
@@ -63,18 +64,4 @@ void init_threads()
         i++;
     } 
 }
-*/
-/*
-    data->philos = malloc(sizeof(t_philo) * data->n_philo);
-    int i = 0;
-    while (i < data->n_philo)
-    {
-        philos[i].philo_id = i+1;
-        philos[i].n_eat_times = 0;
-        philos[i].last_eat_time = 0;
-        philos[i].fork = malloc(sizeof(pthread_mutex_t));
-        if (pthread_mutex_init(philos[i].fork,NULL))
-            return ; //checkar se deu erro tipo mallo
-        i++;
-} 
 */

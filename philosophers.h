@@ -63,7 +63,6 @@ int check_valid_number(char *num_str);
 void store_valid_input(int num_arg, int num);
 
 //utils.c
-
 int	ft_isdigit(int c);
 
 //program.c
@@ -73,11 +72,14 @@ void routine2(void );
 //one_philo.c
 void one_philo_case();
 void *routine_one();
-void free_stuff(t_philo *philo);
 
 //more_philos.c
 void more_philos(int n_philos);
 int initialize_philos(int n_philos, t_philo *philos);
+
+//free.c
+void free_struct();
+void free_stuff(t_philo *philo);
 
 //time.c
 long long getTime();
@@ -85,4 +87,6 @@ long long did_philo_starve(long long last_meal_time);
 long long get_real_time(long long num);
 long long time_diff(long long num1, long long num2);
 
+//threads.c
+void start_threads();
 #endif

@@ -16,12 +16,6 @@ void *routine_one()
     return 0;
 }
 
-void free_stuff(t_philo *philo)
-{
-    free(philo->fork);
-    free(philo);
-}
-
 /**
  * @brief this function its just to threat the edge case 
  * where there is only one philosopher

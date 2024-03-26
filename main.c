@@ -14,5 +14,6 @@ int main(int argc, char **argv)
         printf("valid argument format\n"); //REMOVE THIS PRINT
     start_program();
     //free philosophers
+    free_struct();
     return 0;
 }
