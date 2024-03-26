@@ -30,6 +30,11 @@
 #define FAILED_MALLOC "failed malloc\n"
 #define ERROR_INIT "Error initialization\n"
 
+//debug MACROS
+#define TO_DO "TO BE IMPLEMENTED\n"
+#define FREE "FREE ALLOCATED MEMORY\n"
+#define FINISH "FINISH IMPLEMENTING\n"
+
 
 struct s_philo //philo struct
 {
@@ -89,4 +94,8 @@ long long time_diff(long long num1, long long num2);
 
 //threads.c
 void start_threads();
+
+//lifecycle.c
+void start_lifecycle();
+
 #endif

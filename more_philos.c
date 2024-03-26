@@ -37,6 +37,9 @@ void more_philos(int n_philos)
         return ;
     }
     start_threads();
+    //send the main process to check the deads and the full
+    //join_threads
+    
     //FREE STUFF
 
     //TO DEBUG

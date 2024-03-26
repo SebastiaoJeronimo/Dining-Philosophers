@@ -1,7 +1,7 @@
 NAME = philo
 
 SRC = main.c data.c arg_check.c program.c time.c utils.c one_philo.c more_philos.c free.c \
-threads.c
+threads.c lifecycle.c
 
 OBJ = $(SRC:.c=.o)
 
