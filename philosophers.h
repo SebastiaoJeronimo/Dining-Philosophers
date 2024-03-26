@@ -27,6 +27,8 @@
 #define M_THINK     "is thinking\n"
 #define M_DIE       "died\n"
 #define INVALID_INPUT "invalid input\n"
+#define FAILED_MALLOC "failed malloc\n"
+#define ERROR_INIT "Error initialization\n"
 
 
 struct s_philo //philo struct
@@ -72,6 +74,10 @@ void routine2(void );
 void one_philo_case();
 void *routine_one();
 void free_stuff(t_philo *philo);
+
+//more_philos.c
+void more_philos(int n_philos);
+int initialize_philos(int n_philos, t_philo *philos);
 
 //time.c
 long long getTime();
