@@ -34,7 +34,8 @@ int join_threads(){
     d = get_data();
     while (i < d->n_philo)
     {   
-        if (i <)
+        if (pthread_join(d->philos[i].thread, NULL)) //esperar que as threads com o id especifico terminem
+            return (0);
         i++;
     }
     return 1;
