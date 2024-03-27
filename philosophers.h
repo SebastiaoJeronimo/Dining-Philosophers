@@ -66,10 +66,10 @@ typedef struct s_data t_data;
 t_data *get_data();
 
 //arg_check.c
-
 int check_args(int argc, char **argv);
 int check_valid_number(char *num_str);
 void store_valid_input(int num_arg, int num);
+int create_mutexes();
 
 //utils.c
 int	ft_isdigit(int c);
@@ -89,6 +89,7 @@ int initialize_philos(int n_philos, t_philo *philos);
 //free.c
 void free_struct();
 void free_stuff(t_philo *philo);
+int free_death();
 
 //time.c
 long long getTime();
@@ -101,6 +102,7 @@ int start_threads();
 int join_threads();
 
 //lifecycle.c
-void *start_lifecycle();
+void start_lifecycle(void *philo_arg);
+void lifecycle();
 
 #endif

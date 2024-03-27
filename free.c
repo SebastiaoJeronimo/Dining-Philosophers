@@ -1,5 +1,15 @@
 #include "philosophers.h"
 
+int free_death()
+{
+    t_data *d;
+
+    d = get_data();
+    pthread_mutex_destroy(d->death_lock);
+    free(d->death_lock);
+    return 0;
+}
+
 void free_stuff(t_philo *philo)
 {
     free(philo->fork);

@@ -1,5 +1,30 @@
 #include "philosophers.h"
 
+int create_mutexes()
+{
+    t_data *d;
+
+    d = get_data();
+
+    d->death_lock = malloc(sizeof(pthread_mutex_t));
+    if(!d->death_lock)
+        return 0; 
+    if (pthread_mutex_init((d->death_lock), NULL))
+    {
+        free(d->death_lock);
+        return 0;
+    }
+    d->meal_lock = malloc(sizeof(pthread_mutex_t));
+    if(!d->meal_lock)
+        return free_death();
+    if (pthread_mutex_init((d->meal_lock), NULL))
+    {
+        free(d->meal_lock);
+        return free_death();
+    }
+    return 1;
+}  
+
 /**
  * @brief stores the valid input number in the static/singleton struct
  * 
@@ -25,6 +50,7 @@ void store_valid_input(int num_arg, int num)
         data->meal = 0;
         data->death = 0;
     }
+        
 }
 
 /**
@@ -71,6 +97,12 @@ int check_args(int argc, char **argv)
         if (!num)  
             return 0;
         store_valid_input(i, num);
+        if (i == 1 && num > 1)
+            if (!create_mutexes())
+            {
+                printf(FAILED_MALLOC);
+                return 0;
+            }
         i++;
     }
     return 1;

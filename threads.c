@@ -15,7 +15,7 @@ int start_threads(){
     i = 0;
     while(i < d->n_philo)
     {
-        if (pthread_create(&(d->philos[i].thread), NULL, start_lifecycle, &(d->philos[i])))
+        if (pthread_create(&(d->philos[i].thread), NULL,(void *) start_lifecycle, &(d->philos[i])))
             return 0;
         i++;
     }
@@ -31,6 +31,7 @@ int join_threads(){
     t_data *d;
     int i;
     
+    i = 0;
     d = get_data();
     while (i < d->n_philo)
     {   

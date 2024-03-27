@@ -37,34 +37,5 @@ void more_philos(int n_philos)
         return ;
     }
     start_threads();
-    //send the main process to check the deads and the full
-    //join_threads
-    
-    //FREE STUFF
-
-    //TO DEBUG
-    /* 
-    int i = 0;
-    while (i < n_philos)
-    {
-        printf("philo n %d \n", d->philos[i].philo_id);
-        i++;
-    }
-    */
+    join_threads();
 }
-
-
-
-/*
-void init_threads()
-{
-    int i;
-    
-    i = 0; 
-    while (i < get_data()->n_philo)
-    {
-        if(pthread_create(&))
-        i++;
-    } 
-}
-*/
