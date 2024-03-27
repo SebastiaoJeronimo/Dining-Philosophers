@@ -49,12 +49,16 @@ typedef struct s_philo t_philo;
 struct s_data //cena da data
 {
     int n_philo;
-    int time_die;
+    int time_die; 
     int time_eat;
     int time_sleep;
     int eat_times;
-    long long start_time;
+    long long start_time; //AINDA NAO INICIALIZEI ESTA MERDA
     t_philo *philos;
+    int meal;
+    pthread_mutex_t *meal_lock;
+    int death;
+    pthread_mutex_t *death_lock;
 };
 typedef struct s_data t_data;
 
@@ -93,9 +97,10 @@ long long get_real_time(long long num);
 long long time_diff(long long num1, long long num2);
 
 //threads.c
-void start_threads();
+int start_threads();
+int join_threads();
 
 //lifecycle.c
-void start_lifecycle();
+void *start_lifecycle();
 
 #endif

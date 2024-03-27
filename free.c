@@ -23,6 +23,12 @@ void    free_struct()
         free(d->philos[i].fork);
         i++;
     }
-    //DAR FREE A TUDO NA STRUCT GLOBAL
+    if (d->meal_lock)
+    {
+        pthread_mutex_destroy(d->meal_lock);
+        free(d->meal_lock);
+        pthread_mutex_destroy(d->death_lock);
+        free(d->death_lock);
+    }
     free(d->philos); //ja foi visto que existe na verificacao do inicio
 }

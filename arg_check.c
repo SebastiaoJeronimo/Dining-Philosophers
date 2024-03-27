@@ -20,7 +20,11 @@ void store_valid_input(int num_arg, int num)
     else if (num_arg == T_SLEEP)
         data->time_sleep = num;
     else
+    {
         data->eat_times = num;
+        data->meal = 0;
+        data->death = 0;
+    }
 }
 
 /**
@@ -67,7 +71,6 @@ int check_args(int argc, char **argv)
         if (!num)  
             return 0;
         store_valid_input(i, num);
-        //attribute the values to static struct
         i++;
     }
     return 1;
