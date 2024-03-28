@@ -37,28 +37,59 @@ void more_philos(int n_philos)
         return ;
     }
     start_threads();
-    check_dead_full(); //
+    check_dead_full(get_data());
     join_threads();
 }
-
+ 
 /**
  * @brief stops the program when dead or full CHECKER
  * 
  */
-void check_dead_full()
+void check_dead_full(t_data *d)
 {
-    //the global structure has to have the starting data
-    
+    long long marker;
+    int i;
+
+    while (!see_dead() && !see_full() /*!d->death && !d->meal*/)
+    {
+        usleep(LOOP_DELAY);
+        if (d->eat_times)
+            set_full(d);
+        i = 0;
+        while (i < d->n_philo)
+        {
+            pthread_mutex_lock(d->meal_lock);
+            if (get_real_time(get_time()) >= time_sum(d->philos[i].last_eat_time, d->time_die))
+            {
+                pthread_mutex_unlock(d->meal_lock); //temos que dar unlock antes
+                set_dead(d, i);
+            }
+            else
+                pthread_mutex_unlock(d->meal_lock);
+            i++;
+        }
+    }
 }
 
-void check_dead()
+/**
+ * @brief marks that one philo is killed
+ * 
+ */
+void set_dead(t_data *d, int i)
 {
-    //checks for dead philos
-    printf(TO_DO);
+    if (see_dead() || see_full())
+        return ;
+    pthread_mutex_lock(d->death_lock);
+    d->death = 1;
+    pthread_mutex_unlock(d->death_lock);
+    printf("%lld %d %s", get_real_time(get_time()), i, M_DIE);
 }
 
-void check_full()
+/**
+ * @brief set the flag to mark that all the philosophers are full 
+ * 
+ */
+void set_full(t_data *d)
 {
-    //checks if all the philos are full
     printf(TO_DO);
 }

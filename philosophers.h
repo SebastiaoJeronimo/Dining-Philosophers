@@ -37,6 +37,7 @@
 
 //time Macros
 #define DELAY 100
+#define LOOP_DELAY 100
 
 
 struct s_philo //philo struct
@@ -88,8 +89,9 @@ void *routine_one();
 //more_philos.c
 void more_philos(int n_philos);
 int initialize_philos(int n_philos, t_philo *philos);
-void check_dead_full();
-void check_dead();
+void check_dead_full(t_data *d);
+void set_dead(t_data *d, int index);
+void set_full(t_data *d);
 
 //free.c
 void free_struct();
@@ -97,14 +99,17 @@ void free_stuff(t_philo *philo);
 int free_death();
 
 //time.c
-long long getTime();
+long long get_time();
 long long did_philo_starve(long long last_meal_time);
 long long get_real_time(long long num);
 long long time_diff(long long num1, long long num2);
+long long time_sum(long long num1, long long num2);
 
 //threads.c
 int start_threads();
 int join_threads();
+int see_dead();
+int see_full();
 
 //lifecycle.c
 void start_lifecycle(void *philo_arg);

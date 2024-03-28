@@ -4,7 +4,7 @@
  * @brief get the time using the archaic function gettimeofday
  * @return long long that corresponds to the time in miliseconds
  */
-long long getTime(){
+long long get_time(){
 
     struct timeval time;
 
@@ -36,6 +36,18 @@ long long time_diff(long long num1, long long num2)
 }
 
 /**
+ * @brief computes the sum of the timestamps
+ * 
+ * @param num1 
+ * @param num2 
+ * @return long long 
+ */
+long long time_sum(long long num1, long long num2)
+{
+    return (num1 + num2);
+}
+
+/**
  * @brief checks if the philosopher starved 
  * using its last meal timestamp
  * 
@@ -52,11 +64,3 @@ long long did_philo_starve(long long last_meal_time)
     return (0);
 }
 
-/*
-int main (){
-    long long start_value = getTime();
-    printf("starting time : %lld \n",getTime()- start_value);
-    usleep(2000);
-    printf("time after 3 miliseconds: %lld \n",getTime() - start_value);
-}
-*/
