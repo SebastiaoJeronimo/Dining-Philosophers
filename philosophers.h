@@ -91,7 +91,7 @@ void more_philos(int n_philos);
 int initialize_philos(int n_philos, t_philo *philos);
 void check_dead_full(t_data *d);
 void set_dead(t_data *d, int index);
-void set_full(t_data *d);
+void check_full(t_data *d);
 
 //free.c
 void free_struct();
@@ -110,6 +110,7 @@ int start_threads();
 int join_threads();
 int see_dead();
 int see_full();
+//void lock_alter
 
 //lifecycle.c
 void start_lifecycle(void *philo_arg);

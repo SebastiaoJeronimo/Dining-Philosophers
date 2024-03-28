@@ -66,3 +66,4 @@ int see_full()
     pthread_mutex_unlock(d->meal_lock);
     return result;
 }
+

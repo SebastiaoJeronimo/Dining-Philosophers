@@ -54,7 +54,7 @@ void check_dead_full(t_data *d)
     {
         usleep(LOOP_DELAY);
         if (d->eat_times)
-            set_full(d);
+            check_full(d);
         i = 0;
         while (i < d->n_philo)
         {
@@ -79,17 +79,36 @@ void set_dead(t_data *d, int i)
 {
     if (see_dead() || see_full())
         return ;
-    pthread_mutex_lock(d->death_lock);
+    pthread_mutex_lock(d->death_lock); //make a function that lock a mutex
     d->death = 1;
     pthread_mutex_unlock(d->death_lock);
     printf("%lld %d %s", get_real_time(get_time()), i, M_DIE);
 }
 
 /**
- * @brief set the flag to mark that all the philosophers are full 
+ * @brief checks if all the philosophers are full 
  * 
  */
-void set_full(t_data *d)
+void check_full(t_data *d)
 {
-    printf(TO_DO);
+    int i;
+
+    i = 0;
+    if (see_dead() || see_full())
+        return ;
+    while (i < d->n_philo)
+    {
+        pthread_mutex_lock(d->meal_lock);
+        if (d->philos[i].n_eat_times < d->eat_times)
+        {
+            pthread_mutex_unlock(d->meal_lock); 
+            return ;
+        }
+        else
+            pthread_mutex_unlock(d->meal_lock);
+        i++;
+    }
+    pthread_mutex_lock(d->meal_lock); //make a function that lock a mutex and sets the locked value to 1
+    d->meal = 1;
+    pthread_mutex_unlock(d->meal_lock);
 }
