@@ -35,6 +35,9 @@
 #define FREE "FREE ALLOCATED MEMORY\n"
 #define FINISH "FINISH IMPLEMENTING\n"
 
+//time Macros
+#define DELAY 100
+
 
 struct s_philo //philo struct
 {
@@ -85,6 +88,8 @@ void *routine_one();
 //more_philos.c
 void more_philos(int n_philos);
 int initialize_philos(int n_philos, t_philo *philos);
+void check_dead_full();
+void check_dead();
 
 //free.c
 void free_struct();

@@ -8,7 +8,7 @@ void start_lifecycle(void *philo_arg)
     philo_arg = NULL;
     printf("o id do philo e %d\n", philo->philo_id);
     if (philo->philo_id % 2)
-        usleep(200); //EXPERIMENTAR COM ESTE VALOR
+        usleep(50); //EXPERIMENTAR COM ESTE VALOR
     //if () ver se alguem ja morreu ou ja comeram
     lifecycle(philo);
     return ;

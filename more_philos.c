@@ -37,5 +37,28 @@ void more_philos(int n_philos)
         return ;
     }
     start_threads();
+    check_dead_full(); //
     join_threads();
+}
+
+/**
+ * @brief stops the program when dead or full CHECKER
+ * 
+ */
+void check_dead_full()
+{
+    //the global structure has to have the starting data
+    
+}
+
+void check_dead()
+{
+    //checks for dead philos
+    printf(TO_DO);
+}
+
+void check_full()
+{
+    //checks if all the philos are full
+    printf(TO_DO);
 }
