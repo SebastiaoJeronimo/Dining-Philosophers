@@ -120,7 +120,8 @@ void lifecycle();
 void get_forks(t_philo *philo);
 void drop_forks(t_philo *philo);
 void eat(t_philo *philo);
+void lock_print(t_philo *philo, char *msg);
 
 //wait.c
-
+void wait(long long wait);
 #endif

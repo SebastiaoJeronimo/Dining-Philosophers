@@ -1,6 +1,6 @@
 #include "philosophers.h"
 
-void wait(t_philo *philo, long long wait)
+void wait(long long wait)
 {
     long long begin;
 
@@ -9,8 +9,10 @@ void wait(t_philo *philo, long long wait)
     {
         if(see_dead())
             return ;
+        //printf ("time : %lld\n", get_time() - begin);
+        //printf ("wait : %lld\n", wait);
         if (get_time() - begin > wait)
             return ;
-        usleep(DELAY);
+        usleep(DELAY*5);
     }
 }

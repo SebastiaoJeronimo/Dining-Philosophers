@@ -59,7 +59,7 @@ long long did_philo_starve(long long last_meal_time)
     t_data  *data;
 
     data = get_data();
-    if ((getTime() - last_meal_time) > data->time_eat)
+    if ((get_time() - last_meal_time) > data->time_eat)
         return (1);
     return (0);
 }

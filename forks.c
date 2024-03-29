@@ -43,12 +43,10 @@ void drop_forks(t_philo *philo)
     next = &(d->philos[(philo->philo_id % d->n_philo)]);
     pthread_mutex_unlock(philo->fork);
     pthread_mutex_unlock(next->fork);
-
-    //lock print
-    if (!see_dead() || !see_full())
+    if (see_dead() || see_full())
         return ;
     lock_print(philo,M_SLEEP);
-    wait(philo,d->time_sleep);
+    wait(d->time_sleep);
     lock_print(philo,M_THINK);
 }
 
@@ -61,13 +59,15 @@ void eat(t_philo *philo)
     philo->n_eat_times++;
     philo->last_eat_time = get_real_time(get_time());
     pthread_mutex_unlock(d->meal_lock);
+    //FALTA AQUI O WAIT
 }
 
 
 void lock_print(t_philo *philo, char *msg)
 {
-    if (!see_dead() || !see_full())
+    if (see_dead() || see_full())
         return ;
-    printf("%lld %d %s",get_time() , philo->philo_id, msg);
+    //printf("o tempo em milisegundos é %lld", get_real_time(get_time()));
+    printf("%lld %d %s",get_real_time(get_time()), philo->philo_id, msg);
 }
 

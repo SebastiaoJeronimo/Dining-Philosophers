@@ -1,13 +1,13 @@
 NAME = philo
 
 SRC = main.c data.c arg_check.c program.c time.c utils.c one_philo.c more_philos.c free.c \
-threads.c lifecycle.c
+threads.c lifecycle.c forks.c wait.c
 
 OBJ = $(SRC:.c=.o)
 
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra #-O3 -fsanitize=thread 
+CFLAGS = -Wall -Werror -Wextra -O3 -fsanitize=thread 
 
 LPTHREAD = -lpthread
 

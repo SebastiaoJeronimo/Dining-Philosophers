@@ -47,7 +47,6 @@ void more_philos(int n_philos)
  */
 void check_dead_full(t_data *d)
 {
-    long long marker;
     int i;
 
     while (!see_dead() && !see_full() /*!d->death && !d->meal*/)
@@ -82,7 +81,7 @@ void set_dead(t_data *d, int i)
     pthread_mutex_lock(d->death_lock); //make a function that lock a mutex
     d->death = 1;
     pthread_mutex_unlock(d->death_lock);
-    printf("%lld %d %s", get_real_time(get_time()), i, M_DIE);
+    printf("%lld %d %s", get_real_time(get_time()), i+1, M_DIE);
 }
 
 /**

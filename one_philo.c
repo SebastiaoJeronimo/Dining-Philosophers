@@ -30,7 +30,7 @@ void one_philo_case()
     if (!philo)
         return ;
     philo->n_eat_times = 0;
-    philo->last_eat_time = getTime() - get_data()->start_time;
+    philo->last_eat_time = get_time() - get_data()->start_time;
     philo->philo_id = 1;
     philo->fork = (pthread_mutex_t *) malloc(sizeof(pthread_mutex_t));
     if (!philo->fork)
