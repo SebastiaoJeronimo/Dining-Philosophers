@@ -116,4 +116,11 @@ int see_full();
 void start_lifecycle(void *philo_arg);
 void lifecycle();
 
+//forks.c
+void get_forks(t_philo *philo);
+void drop_forks(t_philo *philo);
+void eat(t_philo *philo);
+
+//wait.c
+
 #endif

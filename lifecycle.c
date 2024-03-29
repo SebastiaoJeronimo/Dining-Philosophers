@@ -7,7 +7,7 @@ void start_lifecycle(void *philo_arg)
     philo = (t_philo *) philo_arg;
     printf("o id do philo e %d\n", philo->philo_id);
     if (philo->philo_id % 2)
-        usleep(50); //EXPERIMENTAR COM ESTE VALOR
+        usleep(DELAY/2); //EXPERIMENTAR COM ESTE VALOR
     //if () ver se alguem ja morreu ou ja comeram
     lifecycle(philo);
     return ;
@@ -15,17 +15,14 @@ void start_lifecycle(void *philo_arg)
 
 void lifecycle(t_philo *philo)
 {
-    printf(TO_DO);
-    int i = philo->philo_id; //so para nao dar erro
-    printf("o num do philo e : %d \n" , i);
-    if (see_dead() || (get_data()->eat_times && see_full()))
-        return;
-    get_forks(philo);
-    //get_forks()
-    //pega no garfo esquerda 
-    //pega no da direita 
-    //largar os garfos
-
-    //pensa
-    //dorme
+    //int i = philo->philo_id; //so para nao dar erro
+    //printf("o num do philo e : %d \n" , i);
+    while(1)
+    {
+        usleep(DELAY);
+        if (see_dead() || (get_data()->eat_times && see_full()))
+            return;
+        get_forks(philo);
+        drop_forks(philo);
+    }
 }

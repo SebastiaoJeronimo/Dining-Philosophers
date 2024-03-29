@@ -12,6 +12,7 @@ void get_forks(t_philo *philo)
     t_data *d;
     t_philo *next;
 
+    d = get_data();
     next = &(d->philos[(philo->philo_id % d->n_philo)]);
     if (philo->philo_id < d->n_philo)
     {
@@ -22,20 +23,51 @@ void get_forks(t_philo *philo)
     {
         pthread_mutex_lock(next->fork);
         pthread_mutex_lock(philo->fork);
-    }
-    //lock print
-    if (!see_dead() || !see_full())
-        return;
-    printf (); //fork 
-    printf (); //fork
-    printf (); //eat
+    }  
+    lock_print(philo,M_FORK);
+    lock_print(philo,M_FORK);
+    lock_print(philo,M_EAT);
+    eat(philo);
 }
 
 /**
  * @brief a specific philosopher drops the forkss
  * 
  */
-void drop_forks()
+void drop_forks(t_philo *philo)
 {
-    printf(TO_DO);
+    t_philo *next;
+    t_data *d;
+
+    d = get_data();
+    next = &(d->philos[(philo->philo_id % d->n_philo)]);
+    pthread_mutex_unlock(philo->fork);
+    pthread_mutex_unlock(next->fork);
+
+    //lock print
+    if (!see_dead() || !see_full())
+        return ;
+    lock_print(philo,M_SLEEP);
+    wait(philo,d->time_sleep);
+    lock_print(philo,M_THINK);
 }
+
+void eat(t_philo *philo)
+{
+    t_data *d;
+
+    d = get_data();
+    pthread_mutex_lock(d->meal_lock);
+    philo->n_eat_times++;
+    philo->last_eat_time = get_real_time(get_time());
+    pthread_mutex_unlock(d->meal_lock);
+}
+
+
+void lock_print(t_philo *philo, char *msg)
+{
+    if (!see_dead() || !see_full())
+        return ;
+    printf("%lld %d %s",get_time() , philo->philo_id, msg);
+}
+
