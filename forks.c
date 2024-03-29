@@ -7,9 +7,28 @@
  * 2 = (2 , 3)
  * 3 = (3 , 1)
  */
-void get_forks()
+void get_forks(t_philo *philo)
 {
-    printf(TO_DO);
+    t_data *d;
+    t_philo *next;
+
+    next = &(d->philos[(philo->philo_id % d->n_philo)]);
+    if (philo->philo_id < d->n_philo)
+    {
+        pthread_mutex_lock(philo->fork);
+		pthread_mutex_lock(next->fork);
+    }
+    else
+    {
+        pthread_mutex_lock(next->fork);
+        pthread_mutex_lock(philo->fork);
+    }
+    //lock print
+    if (!see_dead() || !see_full())
+        return;
+    printf (); //fork 
+    printf (); //fork
+    printf (); //eat
 }
 
 /**

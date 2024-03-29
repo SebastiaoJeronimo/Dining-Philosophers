@@ -20,7 +20,7 @@ void lifecycle(t_philo *philo)
     printf("o num do philo e : %d \n" , i);
     if (see_dead() || (get_data()->eat_times && see_full()))
         return;
-    //get_forks(philo);
+    get_forks(philo);
     //get_forks()
     //pega no garfo esquerda 
     //pega no da direita 
