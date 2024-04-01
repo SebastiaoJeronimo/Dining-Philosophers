@@ -23,10 +23,12 @@ int	initialize_philos(int n_philos, t_philo *philos)
 		philos[i].n_eat_times = 0;
 		philos[i].last_eat_time = 0;
 		philos[i].fork = malloc(sizeof(pthread_mutex_t));
+		philos[i].data = get_data();
 		if (!philos[i].fork)
 			return (0);
 		if (pthread_mutex_init((philos[i].fork), NULL))
 			return (0);
+		philos[i].next = &(philos[(philos[i].philo_id % n_philos)]); //adicionado para testar
 		i++;
 	}
 	return (1);
@@ -70,7 +72,7 @@ void	check_dead_full(t_data *d)
 		while (i < d->n_philo)
 		{
 			pthread_mutex_lock(d->meal_lock);
-			if (get_real_time(get_time())
+			if ((get_time() - get_data()->start_time)
 				>= time_sum(d->philos[i].last_eat_time,
 					d->time_die))
 			{
@@ -85,7 +87,7 @@ void	check_dead_full(t_data *d)
 }
 
 /**
- * @brief marks that one philo is killed
+ * @brief marks that one philo_diogo is killed
  *
  */
 void	set_dead(t_data *d, int i)
@@ -95,7 +97,7 @@ void	set_dead(t_data *d, int i)
 	pthread_mutex_lock(d->death_lock);
 	d->death = 1;
 	pthread_mutex_unlock(d->death_lock);
-	printf("%ld %d %s", get_real_time(get_time()), i + 1, M_DIE);
+	printf("%ld %d %s", (get_time() - get_data()->start_time), i + 1, M_DIE);
 }
 
 /**

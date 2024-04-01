@@ -20,19 +20,11 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-// philo state args
-# define EAT 1
-# define THINK 2
-# define SLEEP 3
-
-// philo args
 # define N_PHILO 1
 # define T_DIE 2
 # define T_EAT 3
 # define T_SLEEP 4
-# define N_T_EAT 5
 
-// messages
 # define M_FORK "has taken a fork\n"
 # define M_EAT "is eating\n"
 # define M_SLEEP "is sleeping\n"
@@ -42,14 +34,10 @@
 # define FAILED_MALLOC "failed malloc\n"
 # define ERROR_INIT "Error initialization\n"
 
-// debug MACROS
-# define TO_DO "TO BE IMPLEMENTED\n"
-# define FREE "FREE ALLOCATED MEMORY\n"
-# define FINISH "FINISH IMPLEMENTING\n"
-
-// time Macros
-# define DELAY 100
+# define DELAY 10
 # define LOOP_DELAY 100
+
+typedef struct s_philo	t_philo;
 
 struct s_philo
 {
@@ -58,6 +46,8 @@ struct s_philo
 	int				philo_id;
 	pthread_mutex_t	*fork;
 	pthread_t		thread;
+	struct s_data	*data;
+	t_philo			*next; //update
 };
 typedef struct s_philo	t_philo;
 
@@ -88,6 +78,7 @@ int		create_mutexes(void);
 
 // utils.c
 int		ft_isdigit(int c);
+int		ft_usleep(long time);
 
 // program.c
 void	start_program(void);
@@ -127,12 +118,11 @@ void	lock_print(t_philo *philo, char *msg);
 
 // wait.c
 void	wait(long wait);
+void	wait_bigger(long wait);
+void	wait_small(long wait);
 
 // time.c
 long	get_time(void);
-long	did_philo_starve(long last_meal_time);
-long	get_real_time(long num);
-long	time_diff(long num1, long num2);
 long	time_sum(long num1, long num2);
 
 #endif

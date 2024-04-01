@@ -16,9 +16,9 @@ void	*start_lifecycle(void *philo_arg)
 {
 	t_philo	*philo;
 
-	philo = (t_philo *)philo_arg;
+	philo = (t_philo *) philo_arg;
 	if (philo->philo_id % 2)
-		usleep(DELAY * 3);
+		usleep(philo->data->time_eat * 1000);
 	if (!see_dead())
 		lifecycle(philo);
 	return (NULL);
@@ -28,11 +28,11 @@ void	lifecycle(t_philo *philo)
 {
 	while (1)
 	{
-		usleep(DELAY);
-		if (see_dead() || (get_data()->eat_times && see_full()))
+		ft_usleep(DELAY);
+		if (see_dead() || (philo->data->eat_times && see_full()))
 			return ;
 		get_forks(philo);
-		wait(get_data()->time_eat);
+		wait(philo->data->time_eat);
 		drop_forks(philo);
 	}
 }

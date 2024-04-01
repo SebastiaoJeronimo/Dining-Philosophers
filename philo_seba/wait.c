@@ -12,6 +12,7 @@
 
 #include "philosophers.h"
 
+/*
 void	wait(long wait)
 {
 	long	begin;
@@ -21,8 +22,14 @@ void	wait(long wait)
 	{
 		if (see_dead())
 			return ;
-		if (get_time() - begin > wait)
+		if (get_time() - begin >= wait)
 			return ;
-		usleep(DELAY * 5);
+		ft_usleep(DELAY);
 	}
+}
+*/
+
+void	wait(long wait)
+{
+	usleep(wait *1000);
 }

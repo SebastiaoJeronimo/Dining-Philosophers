@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "philosophers.h"
+
 /**
  * @brief checks if a character is a ascii digit
  *
@@ -21,4 +23,20 @@ int	ft_isdigit(int c)
 	if ((c >= '0' && c <= '9'))
 		return (1);
 	return (0);
+}
+
+int	ft_usleep2(long time)
+{
+	unsigned int	start;
+
+	start = get_time();
+	while ((get_time() - start) < time)
+		usleep(time / 10);
+	return (0);
+}
+
+int	ft_usleep(long time)
+{
+	usleep(time);
+	return(0);
 }
