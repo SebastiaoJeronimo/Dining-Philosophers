@@ -28,7 +28,7 @@ int	initialize_philos(int n_philos, t_philo *philos)
 			return (0);
 		if (pthread_mutex_init((philos[i].fork), NULL))
 			return (0);
-		philos[i].next = &(philos[(philos[i].philo_id % n_philos)]); //adicionado para testar
+		philos[i].next = &(philos[(philos[i].philo_id % n_philos)]);
 		i++;
 	}
 	return (1);

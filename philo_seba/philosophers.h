@@ -47,7 +47,7 @@ struct s_philo
 	pthread_mutex_t	*fork;
 	pthread_t		thread;
 	struct s_data	*data;
-	t_philo			*next; //update
+	t_philo			*next;
 };
 typedef struct s_philo	t_philo;
 

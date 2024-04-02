@@ -22,19 +22,15 @@
 void	get_forks(t_philo *philo)
 {
 	t_data	*d;
-	//t_philo	*next;
 
 	d = philo->data;
-	//next = &(d->philos[(philo->philo_id % d->n_philo)]);
 	if (philo->philo_id < d->n_philo)
 	{
 		pthread_mutex_lock(philo->fork);
 		pthread_mutex_lock(philo->next->fork);
-		//pthread_mutex_lock(next->fork);
 	}
 	else
 	{
-		//pthread_mutex_lock(next->fork);
 		pthread_mutex_lock(philo->next->fork);
 		pthread_mutex_lock(philo->fork);
 	}
@@ -59,14 +55,11 @@ void	think(t_philo *philo)
  */
 void	drop_forks(t_philo *philo)
 {
-	//t_philo	*next;
 	t_data	*d;
 
 	d = philo->data;
-	//next = &(d->philos[(philo->philo_id % d->n_philo)]);
 	pthread_mutex_unlock(philo->fork);
 	pthread_mutex_unlock(philo->next->fork);
-	//pthread_mutex_unlock(next->fork);
 	if (see_dead() || see_full())
 		return ;
 	lock_print(philo, M_SLEEP);

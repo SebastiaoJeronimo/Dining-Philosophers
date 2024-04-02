@@ -77,7 +77,7 @@ int	check_valid_number(char *num_str)
 	num = 0;
 	while (num_str[i])
 	{
-		if ((num > INT_MAX) | !ft_isdigit(num_str[i]))
+		if ((num > INT_MAX) | !ft_isdigit(num_str[i]) | i >= 10)
 			return (0);
 		num = num * 10 + (num_str[i] - '0');
 		i++;

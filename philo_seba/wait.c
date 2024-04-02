@@ -31,5 +31,5 @@ void	wait(long wait)
 
 void	wait(long wait)
 {
-	usleep(wait *1000);
+	usleep(wait * 1000);
 }

@@ -38,5 +38,5 @@ int	ft_usleep2(long time)
 int	ft_usleep(long time)
 {
 	usleep(time);
-	return(0);
+	return (0);
 }
